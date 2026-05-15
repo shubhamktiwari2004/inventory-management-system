@@ -9,7 +9,6 @@ A Java Spring Boot based Inventory Management System for managing products , sto
 - Authentication & Authorization
 - REST API Integration
 - Responsive User Interface
-- Search and Filter Functionality
 
 ## Tech Stack
 - Java
