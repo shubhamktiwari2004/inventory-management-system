@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Product</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 500px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .add-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .form-box {
+            margin-top: 15px;
+            display: none;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .save-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+
+    <h2>Products</h2>
+
+
+
+
+    <div id="productForm">
+        <form th:action="@{/updateProduct}" method="post">
+            <input type="hidden" name="id" placeholder="id" th:value ="${product.id}" required><br>
+            <input type="hidden" name="productId" placeholder="id" th:value ="${product.productId}" required><br>
+
+            <input type="text" name="name" placeholder="Name" th:value ="${product.name}" required><br>
+            <input type="number" name="price" placeholder="Price" th:value ="${product.price}" required><br>
+            <input type="number" name="quantity" placeholder="Quantity" th:value ="${product.quantity}" required><br>
+            <input type="number" name="enable" placeholder="Enable (0 or 1)" th:value ="${product.enable}" required><br>
+
+            <br><br>
+            <button type="submit" class="save-btn">Save</button>
+
+        </form>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

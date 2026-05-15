@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+    <h2>Products</h2>
+    <a th:href="@{/product/cart}">
+        <button>Go to Cart</button>
+    </a>
+
+
+    <p style="color:red;" th:text="${message}"></p>
+
+
+    <table th:if="${products != null and !products.isEmpty()}">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+            <th th:if="${carts != null and !carts.isEmpty()}">Number of Product(In Cart)</th>
+
+        </tr>
+
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td>
+                <a th:href="@{'/cart/add/' + ${product.productId}}">Add To Cart</a>
+                <br>
+                <br>
+                <a th:href="@{'/cart/delete/' + ${product.productId}}">Delete from Cart</a>
+            </td>
+            <td>
+                <th:block th:each="cart : ${carts}">
+                    <span th:if="${cart.productId == product.productId}"
+                          th:text="${cart.quantity}">
+                    </span>
+                </th:block>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+</div>
+
+</body>
+</html>

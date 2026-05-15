@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 500px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .add-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .form-box {
+            margin-top: 15px;
+            display: none;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .save-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+
+    <h2>Cart</h2>
+
+    <table th:if="${carts != null and !carts.isEmpty()}">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Place Order</th>
+
+        </tr>
+
+        <tr th:each="cart : ${carts}">
+            <td th:text="${cart.name}"></td>
+            <td th:text="${cart.price}"></td>
+            <td th:text="${cart.quantity}"></td>
+            <td>
+                <a th:href="@{'/cart/placeOrder/' + ${cart.productId}}">Place Order</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
